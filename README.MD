@@ -13,3 +13,5 @@ pip3 install ansible
 ```sh
 ansible-playbook -K laptop.yml
 ````
+
+(można dodać `-vvv` dla większej ilości informacji)
