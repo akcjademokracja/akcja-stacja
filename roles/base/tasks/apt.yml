@@ -19,12 +19,12 @@
     - gnome-tweak-tool
     - sysstat
 
-    - copy:
+- copy:
     src: "../files/{{item}}"
     dest: "/tmp/{{item}}"
   with_items: "{{bundled_packages}}"
 
-- name: Install Skype from bundled deb file
+- name: Install packages from bundled deb files
   apt:
     deb: "/tmp/{{item}}"
     state: present
