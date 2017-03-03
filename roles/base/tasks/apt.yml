@@ -19,20 +19,16 @@
     - gnome-tweak-tool
     - sysstat
 
-- copy:
+    - copy:
     src: "../files/{{item}}"
     dest: "/tmp/{{item}}"
-  with_items:
-    - slack-desktop-2.5.1-amd64.deb
-    - skypeforlinux-64.deb
+  with_items: "{{bundled_packages}}"
 
 - name: Install Skype from bundled deb file
   apt:
     deb: "/tmp/{{item}}"
     state: present
-  with_items:
-    - slack-desktop-2.5.1-amd64.deb
-    - skypeforlinux-64.deb
+  with_items: "{{bundled_packages}}"
 
 
 
