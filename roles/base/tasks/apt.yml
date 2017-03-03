@@ -1,4 +1,19 @@
 ---
+- name: Add Arc theme repo
+  apt_repository: 
+    repo: "{{item}}"
+    state: present
+  with_items:
+    - ppa:moka/daily
+# this arc-theme repo displays a verification failed error
+# so we download deb file and install from file.
+#    - "deb https://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /"
+    
+# - name: Add Arc theme key
+#   apt_key:
+#     url: http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
+#     state: present
+  
 - name: Install all necessary packages and update the system
   apt: name={{item}} state=installed update_cache=true
   with_items:
@@ -12,12 +27,13 @@
     - ttf-mscorefonts-installer
     - emacs24
     - git 
-    - imagemagick
+    - imagemagick 
     - fortune-mod
     - htop
     - dconf-editor
     - gnome-tweak-tool
     - sysstat
+    - moka-icon-theme
 
 - copy:
     src: "../files/{{item}}"
@@ -28,6 +44,7 @@
   apt:
     deb: "/tmp/{{item}}"
     state: present
+    #force: yes
   with_items: "{{bundled_packages}}"
 
 
