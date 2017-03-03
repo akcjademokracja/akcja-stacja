@@ -1,2 +1,4 @@
 ttf-mscorefonts-installer
 EULA
+fortune-mode
+fortune-mod

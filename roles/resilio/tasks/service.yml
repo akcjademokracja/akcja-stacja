@@ -1,0 +1,38 @@
+---
+- name: Disable global Resilio
+  tags:
+    - service
+  service:
+    enabled: no
+    name: resilio-sync
+
+- name: "Create systemd user service for {{home}}"
+  tags:
+    - service
+  file:
+    dest: "{{home}}/.config/systemd/user"
+    mode: 0755
+    state: directory
+    owner: "{{username}}"
+    group: "{{username}}"
+
+- name: Install Resilio user service
+  tags:
+    - service
+  template:
+    src: "../template/resilio-sync.service.j2"
+    dest: "{{home}}/.config/systemd/user/resilio-sync.service"
+    mode: 0644
+    owner: "{{username}}"
+    group: "{{username}}"
+
+- name: Install Resilio config
+  template:
+    src: ../template/sync.json.j2
+    dest: "{{home}}/.sync.json"
+    mode: 0600
+    owner: "{{username}}"
+    group: "{{username}}"
+
+- name: Enable per user Resilio
+  shell: systemctl --user enable resilio-sync.service

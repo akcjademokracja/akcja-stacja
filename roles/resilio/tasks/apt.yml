@@ -1,9 +1,9 @@
 ---
-- name: Kill btsync process
+- name: Kill old BTSync process
   ignore_errors: true
   shell: pkill -TERM btsync
 
-- name: Disable autostart
+- name: Disable autostart of old BTSync
   file:
     path: "{{home}}/.config/autostart/btsync.desktop"
     state: absent
@@ -19,8 +19,8 @@
     path: "{{home}}/.sync"
   register: resilio_storage
 
-- name: "Move resilio storage to new loction for {{home}}"
-  shell: "cp -a {{home}}/.config/btsync {{home}}/.sync"
+- name: "Maybe move resilio storage to new loction for {{home}}"
+  shell: "cp -a {{home}}/.config/btsync/storage {{home}}/.sync"
   when: resilio_storage.stat.exists == false  and btsync_storage.stat.exists == true
 
 
@@ -40,47 +40,3 @@
     state: present
     force: yes
 
-
-- name: Disable global Resilio
-  tags:
-    - service
-  service:
-    enabled: no
-    name: resilio-sync
-
-- name: "Create systemd user service for {{home}}"
-  tags:
-    - service
-  file:
-    dest: "{{home}}/.config/systemd/user"
-    mode: 0755
-    state: directory
-    owner: "{{username}}"
-    group: "{{username}}"
-
-- name: Install Resilio user service
-  tags:
-    - service
-  template:
-    src: "../template/resilio-sync.service.j2"
-    dest: "{{home}}/.config/systemd/user/resilio-sync.service"
-    mode: 0644
-    owner: "{{username}}"
-    group: "{{username}}"
-
-- name: Install Resilio config
-  template:
-    src: ../template/sync.json.j2
-    dest: "{{home}}/.sync.json"
-    mode: 0600
-    owner: "{{username}}"
-    group: "{{username}}"
-
-# - name: Enable per user Resilio
-#   tags:
-#     - service
-#   systemd:
-#     enabled: yes
-#     state: started
-#     user: yes
-#     name: resilio-sync

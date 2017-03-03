@@ -4,5 +4,7 @@
   become_user: root
   connection: local
   roles:
-    - resilio
-    #- keepass2
+    - base 
+    # - resilio
+    # - keepass2
+    - { role: developer, when: "ansible_hostname in ['guattaris']" }

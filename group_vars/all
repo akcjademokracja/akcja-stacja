@@ -1,0 +1,5 @@
+
+username: "{{lookup('pipe','who -u |cut -f 1 -d \" \" | sort | uniq | head -1 ')}}"
+
+home: "/home/{{username}}"
+

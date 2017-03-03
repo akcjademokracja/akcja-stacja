@@ -1,0 +1,16 @@
+---
+- name: Copy Source Code Pro font
+  copy:
+    src: ../fonts/source-code-pro
+    dest: /usr/share/fonts/opentype/source-code-pro
+    directory_mode: yes
+    mode: 0755
+  notify: update font cache  
+
+- name: Copy Akcja Demokracja fonts
+  copy:
+    src: ../fonts/akcja
+    dest: /usr/share/fonts/opentype/akcja
+    directory_mode: yes
+    mode: 0755
+  notify: update font cache  

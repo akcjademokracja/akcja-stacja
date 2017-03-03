@@ -11,7 +11,8 @@ UMask=0002
 Restart=on-failure
 PermissionsStartOnly=true
 PIDFile=~/.sync/sync.pid
-ExecStart=/usr/bin/rslsync --config ~/.sync.json
+ExecStart=/usr/bin/rslsync --config %h/.sync.json
+# see https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Specifiers
 
 [Install]
 WantedBy=default.target
