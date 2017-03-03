@@ -1,0 +1,18 @@
+[Unit]
+Description=Resilio Sync service
+Documentation=http://help.getsync.com/
+After=network.target network-online.target
+
+[Service]
+Type=forking
+#User=rslsync
+#Group=rslsync
+UMask=0002
+Restart=on-failure
+PermissionsStartOnly=true
+PIDFile=~/.sync/sync.pid
+ExecStart=/usr/bin/rslsync --config ~/.sync.json
+
+[Install]
+WantedBy=default.target
+

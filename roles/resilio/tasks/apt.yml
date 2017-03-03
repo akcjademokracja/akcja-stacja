@@ -1,4 +1,29 @@
 ---
+- name: Kill btsync process
+  ignore_errors: true
+  shell: pkill -TERM btsync
+
+- name: Disable autostart
+  file:
+    path: "{{home}}/.config/autostart/btsync.desktop"
+    state: absent
+
+#- name: Uninstall btsync
+#  apt: name=btsync state=uninstalled
+
+- stat:
+    path: "{{home}}/.config/btsync"
+  register: btsync_storage
+
+- stat:
+    path: "{{home}}/.sync"
+  register: resilio_storage
+
+- name: "Move resilio storage to new loction for {{home}}"
+  shell: "cp -a {{home}}/.config/btsync {{home}}/.sync"
+  when: resilio_storage.stat.exists == false  and btsync_storage.stat.exists == true
+
+
 - name: Install Resilio package repositories
   apt_repository:
     repo: "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
@@ -13,3 +38,49 @@
   apt:
     name: resilio-sync
     state: present
+    force: yes
+
+
+- name: Disable global Resilio
+  tags:
+    - service
+  service:
+    enabled: no
+    name: resilio-sync
+
+- name: "Create systemd user service for {{home}}"
+  tags:
+    - service
+  file:
+    dest: "{{home}}/.config/systemd/user"
+    mode: 0755
+    state: directory
+    owner: "{{username}}"
+    group: "{{username}}"
+
+- name: Install Resilio user service
+  tags:
+    - service
+  template:
+    src: "../template/resilio-sync.service.j2"
+    dest: "{{home}}/.config/systemd/user/resilio-sync.service"
+    mode: 0644
+    owner: "{{username}}"
+    group: "{{username}}"
+
+- name: Install Resilio config
+  template:
+    src: ../template/sync.json.j2
+    dest: "{{home}}/.sync.json"
+    mode: 0600
+    owner: "{{username}}"
+    group: "{{username}}"
+
+# - name: Enable per user Resilio
+#   tags:
+#     - service
+#   systemd:
+#     enabled: yes
+#     state: started
+#     user: yes
+#     name: resilio-sync
