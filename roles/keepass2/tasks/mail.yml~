@@ -1,6 +1,0 @@
----
-- name: Install packages
-  apt: {{item}}
-  with_items:
-    - libmono-system-runtime-serialization4.0-cil 
-    - libmono-posix2.0-cil

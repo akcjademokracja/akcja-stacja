@@ -35,4 +35,5 @@
     group: "{{username}}"
 
 - name: Enable per user Resilio
+  become: "{{username}}"
   shell: systemctl --user enable resilio-sync.service

@@ -5,5 +5,5 @@ bundled_packages:
  - brscan4-0.4.3-3.amd64.deb
  - brscan-skey-0.2.4-1.amd64.deb
  - mfcj5320dwlpr-3.0.1-1a.i386.deb
- - mfcj5320dwcupswrapper-3.0.1-1a.i386.deb
+ # - mfcj5320dwcupswrapper-3.0.1-1a.i386.deb  # maybe not necessary
  - arc-theme_1488477732.766ae1a-0_all.deb

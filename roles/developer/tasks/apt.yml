@@ -1,0 +1,33 @@
+---
+- name: yarn key
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+
+- name: Yarn repo
+  apt_repository:
+    url: "deb https://dl.yarnpkg.com/debian/ stable main"
+
+- name: Install developer packages
+  apt:
+    name: "{{itme}}"
+    state: present
+  with_items:
+    - postgresql
+    - postgresql-contrib-9.5
+    - libmysqlclient-dev
+    - yarn
+    - redis-tools
+    - pgadmin3
+    - heroku-toolbelt
+    - nodejs
+    - coffeescript
+    - npm
+    - vinagre
+    - git-flow
+    - libxml2-dev 
+    - libxslt1-dev
+    - python-dev
+
+#-- webkit? qtdeclarative5-dev libqt5webkit5-dev
+#libqt4-dev libqtwebkit-dev
+

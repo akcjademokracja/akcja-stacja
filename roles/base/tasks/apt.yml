@@ -18,6 +18,7 @@
   apt: name={{item}} state=installed update_cache=true
   with_items:
     - cinnamon-desktop-environment
+    - gnome-shell
     - nemo
     - chromium-browser
     - thunderbird
@@ -34,6 +35,12 @@
     - gnome-tweak-tool
     - sysstat
     - moka-icon-theme
+    - texlive-xetex
+    - texlive-latex-extra
+    - texlive-lang-polish
+    - texlive-latex-recommended
+    - texlive-fonts-recommended
+    - texlive-fonts-extra
 
 - copy:
     src: "../files/{{item}}"
