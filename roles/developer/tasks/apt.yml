@@ -2,10 +2,11 @@
 - name: yarn key
   apt_key:
     url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
 
 - name: Yarn repo
   apt_repository:
-    url: "deb https://dl.yarnpkg.com/debian/ stable main"
+    repo: "deb https://dl.yarnpkg.com/debian/ stable main"
 
 - name: Install developer packages
   apt:
@@ -27,6 +28,7 @@
     - libxml2-dev 
     - libxslt1-dev
     - python-dev
+    - curl
 
 #-- webkit? qtdeclarative5-dev libqt5webkit5-dev
 #libqt4-dev libqtwebkit-dev
