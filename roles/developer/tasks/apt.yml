@@ -4,14 +4,24 @@
     url: https://dl.yarnpkg.com/debian/pubkey.gpg
     state: present
 
+- name: Heroku key
+  apt_key:
+    url: https://cli-assets.heroku.com/apt/release.key 
+    state: present
+
 - name: Yarn repo
   apt_repository:
     repo: "deb https://dl.yarnpkg.com/debian/ stable main"
 
+- name: Heroku repo
+  apt_repository:
+    repo: "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+
 - name: Install developer packages
   apt:
-    name: "{{itme}}"
+    name: "{{item}}"
     state: present
+    update_cache: true
   with_items:
     - postgresql
     - postgresql-contrib-9.5
@@ -19,7 +29,7 @@
     - yarn
     - redis-tools
     - pgadmin3
-    - heroku-toolbelt
+    - heroku
     - nodejs
     - coffeescript
     - npm
