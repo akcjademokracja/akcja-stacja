@@ -27,6 +27,7 @@
     - gimp
     - ttf-mscorefonts-installer
     - emacs24
+    - vim
     - git 
     - imagemagick 
     - fortune-mod

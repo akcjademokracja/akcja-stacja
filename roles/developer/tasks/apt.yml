@@ -39,6 +39,10 @@
     - libxslt1-dev
     - python-dev
     - curl
+    - libpq-dev
+    - imagemagick
+    - libmagickwand-dev
+
 
 #-- webkit? qtdeclarative5-dev libqt5webkit5-dev
 #libqt4-dev libqtwebkit-dev
