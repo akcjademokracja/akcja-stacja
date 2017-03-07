@@ -46,6 +46,11 @@
     - texlive-fonts-recommended
     - texlive-fonts-extra
 
+- name: Install Keepass CX
+  tags:
+    - keepassxc
+  shell: snap install keepassxc
+
 - copy:
     src: "../files/{{item}}"
     dest: "/tmp/{{item}}"

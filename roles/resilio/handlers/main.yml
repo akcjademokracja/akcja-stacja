@@ -1,3 +1,4 @@
 ---
 - name: restart resilio
+  become: "{{username}}"
   shell: systemctl --user restart resilio-sync.service

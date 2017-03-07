@@ -1,25 +1,27 @@
 ---
-- name: Add Apt repositories
-  apt_repository:
-    repo: ppa:dlech/keepass2-plugins
-
-
-- name: Install packages
-  apt:
-    name: "{{item}}"
-    state: present
-  with_items:
-    - keepass2
-    - libmono-system-runtime-serialization4.0-cil 
-    - libmono-posix4.0-cil
-    - libmono-system-xml-linq4.0-cil 
-    - libmono-system-data-datasetextensions4.0-cil 
-    - libmono-system-runtime-serialization4.0-cil 
-    - mono-mcs
-    - keepass2-plugin-application-indicator
-
-- name: Install KeePassHTTP so KeeFox and ChromePass can work
-  copy: src=../files/KeePassHttp.plgx dest=/usr/lib/keepass2 mode=644
-
+# - name: Add Apt repositories
+#   apt_repository:
+#     repo: ppa:dlech/keepass2-plugins
+# 
+# 
+# - name: Install packages
+#   apt:
+#     name: "{{item}}"
+#     state: present
+#   with_items:
+#     - keepass2
+#     - libmono-system-runtime-serialization4.0-cil 
+#     - libmono-posix4.0-cil
+#     - libmono-system-xml-linq4.0-cil 
+#     - libmono-system-data-datasetextensions4.0-cil 
+#     - libmono-system-runtime-serialization4.0-cil 
+#     - mono-mcs
+#     - keepass2-plugin-application-indicator
+# 
+# - name: Install KeePassHTTP so KeeFox and ChromePass can work
+#   copy: src=../files/KeePassHttp.plgx dest=/usr/lib/keepass2 mode=644
   
-
+- name: Install Keepass CX
+  tags:
+    - keepassxc
+  shell: snap install keepassxc

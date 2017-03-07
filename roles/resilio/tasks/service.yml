@@ -49,5 +49,7 @@
 
 - name: Enable per user Resilio
   become: "{{username}}"
+  tags:
+    - resilio
   shell: systemctl --user enable resilio-sync.service
   notify: restart resilio
