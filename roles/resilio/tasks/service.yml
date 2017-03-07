@@ -16,20 +16,33 @@
     owner: "{{username}}"
     group: "{{username}}"
 
-- name: Install Resilio user service
-  tags:
-    - service
-  template:
-    src: "../template/resilio-sync.service.j2"
+- name: Remove my resilio user service as there is one bundled in package
+  file:
     dest: "{{home}}/.config/systemd/user/resilio-sync.service"
-    mode: 0644
+    state: absent
+
+# - name: Install Resilio user service
+#   tags:
+#     - service
+#   template:
+#     src: "../template/resilio-sync.service.j2"
+#     dest: "{{home}}/.config/systemd/user/resilio-sync.service"
+#     mode: 0644
+#     owner: "{{username}}"
+#     group: "{{username}}"
+
+- name: Make Resilio config direcotry
+  file:
+    dest: "{{home}}/.config/resilio-sync"
+    state: directory
+    mode: 0755
     owner: "{{username}}"
     group: "{{username}}"
 
 - name: Install Resilio config
   template:
     src: ../template/sync.json.j2
-    dest: "{{home}}/.sync.json"
+    dest: "{{home}}/.config/resilio-sync/config.json"
     mode: 0600
     owner: "{{username}}"
     group: "{{username}}"
@@ -37,3 +50,4 @@
 - name: Enable per user Resilio
   become: "{{username}}"
   shell: systemctl --user enable resilio-sync.service
+  notify: restart resilio

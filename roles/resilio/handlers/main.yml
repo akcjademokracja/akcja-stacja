@@ -1,0 +1,3 @@
+---
+- name: restart resilio
+  shell: systemctl --user restart resilio-sync.service

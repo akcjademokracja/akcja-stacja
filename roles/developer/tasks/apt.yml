@@ -42,6 +42,8 @@
     - libpq-dev
     - imagemagick
     - libmagickwand-dev
+    - libqt4-dev
+    - libqtwebkit-dev
 
 
 #-- webkit? qtdeclarative5-dev libqt5webkit5-dev
