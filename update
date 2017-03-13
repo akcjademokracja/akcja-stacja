@@ -8,8 +8,8 @@ if [ -z "$user" ]; then
 fi
 
 if [ "$1" = "-u" ]; then
-    changes=$(git pull | grep 'Already up-to-date')
-    if [ -z "$changes" ]; then
+    nochanges=$(git pull | grep 'Already up-to-date')
+    if [ -n "$nochanges" ]; then
         echo "No changes. Aborting" >&2
         exit 1
     fi
