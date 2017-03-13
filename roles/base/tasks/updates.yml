@@ -1,0 +1,7 @@
+---
+- name: update regularly
+  cron:
+    weekday: 1,2,3,4,5
+    hour: 10,12,14,16
+    state: present
+    job: "cd /opt/akcja/akcja-stacja; bash ./update"

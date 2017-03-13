@@ -1,3 +1,5 @@
 ---
+- include: updates.yml
 - include: apt.yml
 - include: fonts.yml
+

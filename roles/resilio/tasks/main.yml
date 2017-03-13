@@ -1,3 +1,5 @@
 ---
 - include: apt.yml
+  when: username != ""
 - include: service.yml
+  when: username != ""
