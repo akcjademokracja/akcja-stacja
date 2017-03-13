@@ -10,7 +10,7 @@ fi
 if [ "$1" = "-u" ]; then
     changes=$(git pull | grep 'Already up-to-date')
     if [ -z "$changes" ]; then
-        echo "No changes, borting" >&2
+        echo "No changes. Aborting" >&2
         exit 1
     fi
 fi
