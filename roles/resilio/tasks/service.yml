@@ -47,9 +47,8 @@
     owner: "{{username}}"
     group: "{{username}}"
 
-- name: Enable per user Resilio
-  become: "{{username}}"
+- name: "Enable per user Resilio (for user {{username}})"
   tags:
     - resilio
-  shell: systemctl --user enable resilio-sync.service
+  shell: "sudo -u {{username}} -i systemctl --user enable resilio-sync.service"
   notify: restart resilio
