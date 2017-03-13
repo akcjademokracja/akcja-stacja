@@ -6,4 +6,4 @@
   roles:
     - base 
     - resilio
-    - { role: developer, when: "ansible_hostname in ['guattari']" }
+    - { role: developer, when: "ansible_hostname in ['guattari', 'thinktank']" }
