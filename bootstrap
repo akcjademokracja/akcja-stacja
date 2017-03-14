@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+# set -e
 
 if ! [ `id -u` = '0' ]; then
     echo "Must run as root" >&2
