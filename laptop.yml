@@ -6,4 +6,5 @@
   roles:
     - base 
     - resilio
+    - keepass2
     - { role: developer, when: "ansible_hostname in ['guattari', 'thinktank']" }
