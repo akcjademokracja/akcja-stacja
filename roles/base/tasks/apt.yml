@@ -63,6 +63,7 @@
     state: present
     #force: yes
   with_items: "{{bundled_packages}}"
+  ignore_errors: true
 
 
 
