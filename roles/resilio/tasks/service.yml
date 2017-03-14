@@ -47,8 +47,24 @@
     owner: "{{username}}"
     group: "{{username}}"
 
+- name: "Remove wrong user service in multi-user.target"
+  tags:
+    - resilio
+  file:
+    dest: "{{home}}/.config/systemd/user/multi-user.target.wants/resilio-sync.service"
+    state: absent
+
+- name: "Fix Resilio service to use default.target not multi-user.target"
+  tags:
+    - resilio
+  lineinfile:
+    dest: "/usr/lib/systemd/user/resilio-sync.service"
+    regexp: "^WantedBy="
+    line: "WantedBy=default.target"
+
 - name: "Enable per user Resilio (for user {{username}})"
   tags:
     - resilio
   shell: "sudo machinectl shell --uid={{username}} .host  -- /bin/systemctl --user enable resilio-sync.service"
   notify: restart resilio
+
