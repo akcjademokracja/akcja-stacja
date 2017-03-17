@@ -13,9 +13,7 @@ apt install \
      python-virtualenv \
      python3  \
      python3-pip
-
 pip3 install ansible
-
 [ -d /opt/akcja ] || mkdir -p /opt/akcja
 cd /opt/akcja
 git clone https://github.com/akcjademokracja/akcja-stacja.git akcja-stacja
