@@ -53,6 +53,14 @@
     - keepassxc
   shell: snap install keepassxc
 
+- name: Make spool directory need by Brother Driver
+  file:
+    dest: /var/spool/lpd
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - copy:
     src: "../files/{{item}}"
     dest: "/tmp/{{item}}"
