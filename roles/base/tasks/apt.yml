@@ -46,6 +46,7 @@
     - texlive-latex-recommended
     - texlive-fonts-recommended
     - texlive-fonts-extra
+    - gscan2pdf
 
 - name: Install Keepass CX
   tags:
