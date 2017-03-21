@@ -1,5 +1,6 @@
 ---
 - include: updates.yml
+- include: encryption.yml
 - include: apt.yml
 - include: fonts.yml
 
