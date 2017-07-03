@@ -1,7 +1,7 @@
 ---
 bundled_packages:
- - slack-desktop-2.5.2-amd64.deb
- - skypeforlinux-64.deb
+ - slack-desktop_2.6.3_amd64.deb
+ - skypeforlinux_5.3.0.1_amd64.deb
  - brscan4-0.4.4-1.amd64.deb
  - brscan-skey-0.2.4-1.amd64.deb
  - mfcj5320dwlpr-3.0.1-1a.i386.deb

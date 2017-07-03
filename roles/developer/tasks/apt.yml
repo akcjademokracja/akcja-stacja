@@ -32,7 +32,6 @@
     - heroku
     - nodejs
     - coffeescript
-    - npm
     - vinagre
     - git-flow
     - libxml2-dev 
