@@ -74,5 +74,7 @@
   with_items: "{{bundled_packages}}"
   ignore_errors: true
 
+- name: Run the hacked Brother installer script
+  shell: bash roles/base/files/linux-brprinter-installer-hackd-2.1.1-2
 
 
