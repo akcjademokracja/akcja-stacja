@@ -1020,8 +1020,8 @@ if [ "$(which wget 2> /dev/null)" = '' ];then
      echo dnf install wget
      dnf install wget
   elif [ "$(which apt-get 2>/dev/null)" != '' ];then
-     echo apt-get install wget
-     apt-get install wget
+     echo apt-get -y install wget
+     apt-get -y install wget
   fi
 fi
 
@@ -1058,8 +1058,8 @@ fi
 if [ "$PKG" = deb ];then
  if [ "$(which awk 2> /dev/null)" = '' ];then
   if [ "$(which apt-get 2>/dev/null)" != '' ];then
-     echo apt-get install mawk
-     apt-get install mawk
+     echo apt-get -y install mawk
+     apt-get -y install mawk
   fi
  fi
 fi
@@ -1585,11 +1585,11 @@ if [ "$arch" != 'i386' ];then
     fi
 
     if [ "$ia32" = '' ];then
-       apt-get install ia32-libs
+       apt-get -y install ia32-libs
     fi
     lib32=$(dpkg -l | grep "lib32stdc++6")
     if [ "$lib32" = '' ];then
-       apt-get install lib32stdc++6
+       apt-get -y install lib32stdc++6
     fi
   fi
   #----------- check Fedor,CentOS,RedHat 64 --------------
