@@ -54,13 +54,23 @@
     dest: "{{home}}/.config/systemd/user/multi-user.target.wants/resilio-sync.service"
     state: absent
 
-- name: "Fix Resilio service to use default.target not multi-user.target"
+- name: "Disable global resilio service"
   tags:
     - resilio
-  lineinfile:
-    dest: "/usr/lib/systemd/user/resilio-sync.service"
-    regexp: "^WantedBy="
-    line: "WantedBy=default.target"
+  shell: "systemctl disable resilio-sync.service"
+
+- name: "Stop global resilio service"
+  tags:
+    - resilio
+  shell: "systemctl stop resilio-sync.service"
+
+# - name: "Fix Resilio service to use default.target not multi-user.target"
+#   tags:
+#     - resilio
+#   lineinfile:
+#     dest: "/usr/lib/systemd/user/resilio-sync.service"
+#     regexp: "^WantedBy="
+#     line: "WantedBy=default.target"
 
 - name: "Enable per user Resilio (for user {{username}})"
   tags:
