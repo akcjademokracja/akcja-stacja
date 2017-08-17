@@ -24,7 +24,7 @@
     update_cache: true
   with_items:
     - postgresql
-    - postgresql-contrib-9.5
+    - postgresql-contrib
     - libmysqlclient-dev
     - yarn
     - redis-tools
