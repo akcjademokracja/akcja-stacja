@@ -29,6 +29,7 @@
     - systemd-container
     - cinnamon-desktop-environment
     - gnome-shell
+    - chrome-gnome-shell
     - nemo
     - chromium-browser
     - thunderbird
@@ -52,6 +53,7 @@
     - texlive-fonts-recommended
     - texlive-fonts-extra
     - gscan2pdf
+    - network-manager-openvpn-gnome
 
 - name: Install Keepass CX
   tags:
