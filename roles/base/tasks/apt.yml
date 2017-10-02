@@ -5,6 +5,7 @@
     state: present
   with_items:
     - ppa:moka/daily
+    - "deb http://eddie.website/repository/apt stable main"
 # this arc-theme repo displays a verification failed error
 # so we download deb file and install from file.
 #    - "deb https://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /"
@@ -19,6 +20,10 @@
     url: https://repo.skype.com/data/SKYPE-GPG-KEY
     state: present
 
+- name: AirVPN key
+  apt_key:
+    url: https://eddie.website/repository/keys/eddie_maintainer_gpg.key
+    state: present
 
 - name: Accept the EULA for MS core fonts
   shell: "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
@@ -54,6 +59,7 @@
     - texlive-fonts-extra
     - gscan2pdf
     - network-manager-openvpn-gnome
+    - airvpn
 
 - name: Install Keepass CX
   tags:

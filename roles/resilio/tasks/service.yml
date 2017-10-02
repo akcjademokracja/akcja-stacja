@@ -75,6 +75,6 @@
 - name: "Enable per user Resilio (for user {{username}})"
   tags:
     - resilio
-  shell: "sudo machinectl shell --uid=$(id -u {{username}}) .host  /bin/systemctl --user enable resilio-sync.service"
+  shell: "sudo machinectl shell --uid=$(id -u {{username}}) .host  /bin/systemctl -- --user enable resilio-sync.service"
   notify: restart resilio
 
