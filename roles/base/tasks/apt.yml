@@ -67,6 +67,12 @@
     - keepassxc
   shell: snap install keepassxc
 
+- name: Run AirVPN on startup
+  copy:
+    src: ../files/AirVPN.desktop
+    dest: "{{home}}/.config/autostart/AirVPN.desktop"
+    mode: 0755
+
 - name: Make spool directory need by Brother Driver
   file:
     dest: /var/spool/lpd
@@ -90,5 +96,4 @@
 
 - name: Run the hacked Brother installer script
   shell: bash roles/base/files/linux-brprinter-installer-hackd-2.1.1-2
-
 
