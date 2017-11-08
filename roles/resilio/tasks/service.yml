@@ -16,6 +16,16 @@
     owner: "{{username}}"
     group: "{{username}}"
 
+- name: "Create {{home}}/.sync directory"
+  tags:
+    - service
+  file:
+    dest: "{{home}}/.sync"
+    state: directory
+    mode: 0755
+    owner: "{{username}}"
+    group: "{{username}}"
+
 - name: Remove my resilio user service as there is one bundled in package
   file:
     dest: "{{home}}/.config/systemd/user/resilio-sync.service"
