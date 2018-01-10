@@ -18,13 +18,18 @@
     url: https://eddie.website/repository/keys/eddie_maintainer_gpg.key
     state: present
 
-- name: Add Arc theme repo
+- name: Add repo
   apt_repository: 
     repo: "{{item}}"
     state: present
   with_items:
-    - ppa:moka/daily
     - "deb http://eddie.website/repository/apt stable main"
+    - ppa:nextcloud-devs/client
+
+- name: Remove arc theme repo
+  apt_repository:
+    repo: ppa:moka/daily
+    state: absent
 
 - name: Accept the EULA for MS core fonts
   shell: "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
@@ -51,7 +56,6 @@
     - dconf-editor
     - gnome-tweak-tool
     - sysstat
-    - moka-icon-theme
     - texlive-xetex
     - texlive-latex-extra
     - texlive-lang-polish
@@ -61,6 +65,7 @@
     - gscan2pdf
     - network-manager-openvpn-gnome
     - airvpn
+    - nextcloud-client
 
 - name: Install Keepass CX
   tags:
