@@ -38,7 +38,6 @@
   apt: name={{item}} state=installed update_cache=true
   with_items:
     - systemd-container
-    - cinnamon-desktop-environment
     - gnome-shell
     - chrome-gnome-shell
     - nemo

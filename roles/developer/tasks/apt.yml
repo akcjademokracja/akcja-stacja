@@ -9,6 +9,11 @@
     url: https://cli-assets.heroku.com/apt/release.key 
     state: present
 
+- name: Docker CE key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
 - name: Yarn repo
   apt_repository:
     repo: "deb https://dl.yarnpkg.com/debian/ stable main"
@@ -17,12 +22,23 @@
   apt_repository:
     repo: "deb https://cli-assets.heroku.com/branches/stable/apt ./"
 
+
+- name: Docker CE repo
+  apt_repository:
+    repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable'
+
+- name: Remove Docker.io
+  apt:
+    name: docker.io
+    state: absent
+  
 - name: Install developer packages
   apt:
     name: "{{item}}"
     state: present
     update_cache: true
   with_items:
+    - docker-ce
     - postgresql
     - postgresql-contrib
     - libmysqlclient-dev
