@@ -2,8 +2,15 @@
 # Akcja Stacja
 
 ## Potrzebne
+W nowszych Debianach/Ubuntu
 
-1. git, python3 i reszta: 
+```sh
+apt install ansible
+git clone https://github.com/akcjademokracja/akcja-stacja
+```
+
+
+Kiedyś: git, python3 i reszta: 
 ```sh
 apt install git python3 python3-pip
 pip3 install ansible
