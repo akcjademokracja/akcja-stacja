@@ -46,7 +46,7 @@
     - redis-tools
     - pgadmin3
     - heroku
-    - emacs24
+    - emacs
     - nodejs
     - coffeescript
     - vinagre

@@ -65,6 +65,8 @@
     - network-manager-openvpn-gnome
     - airvpn
     - nextcloud-client
+    - moka-icon-theme
+    - faba-icon-theme
 
 - name: Install Keepass CX
   tags:
