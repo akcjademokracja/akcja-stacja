@@ -5,6 +5,6 @@
   connection: local
   roles:
     - base 
-    - resilio
+    - { role: resilio, when: "ansible_hostname not in ['lovelace', 'bakunin', 'parks']"}
     - keepass2
-    - { role: developer, when: "ansible_hostname in ['guattari', 'thinktank', 'ferrerguardia']" }
+    - { role: developer, when: "ansible_hostname in ['guattari', 'thinktank', 'ferrerguardia', 'lovelace', 'bakunin', 'parks']" }
