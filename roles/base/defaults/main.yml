@@ -3,6 +3,7 @@ bundled_packages:
  - slack-desktop_2.8.2_amd64.deb
  - skypeforlinux_8.9.0.1_amd64.deb
  - arc-theme_1488477732.766ae1a-0_all.deb
+ - zoom_amd64.deb
 # - brscan4-0.4.4-1.amd64.deb
 # - brscan-skey-0.2.4-1.amd64.deb
 # - mfcj5320dwlpr-3.0.1-1a.i386.deb
