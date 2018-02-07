@@ -67,6 +67,7 @@
     - nextcloud-client
     - moka-icon-theme
     - faba-icon-theme
+    - vlc
 
 - name: Install Keepass CX
   tags:

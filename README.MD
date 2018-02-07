@@ -5,7 +5,7 @@
 W nowszych Debianach/Ubuntu
 
 ```sh
-apt install ansible
+apt install ansible git
 git clone https://github.com/akcjademokracja/akcja-stacja
 ```
 
