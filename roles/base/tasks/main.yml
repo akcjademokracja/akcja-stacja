@@ -3,4 +3,5 @@
 - include: encryption.yml
 - include: apt.yml
 - include: fonts.yml
+- include: printer.yml
 
