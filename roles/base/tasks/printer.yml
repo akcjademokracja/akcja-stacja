@@ -19,5 +19,5 @@
 - name: Set Kolos papersize to A4
   tags:
     - printer
-  shell: "lpoptions  -p 'Kolos'  -o media=A4,Plain"
+  shell: "lpadmin -p Kolos -o PageSize=A4"
   when: kolos.stat.exists == False
