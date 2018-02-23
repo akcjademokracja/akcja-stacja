@@ -5,6 +5,7 @@
   connection: local
   roles:
     - base 
-    - { role: resilio, when: "ansible_distribution_version == '16.04'" } 
     - keepass2
     - { role: developer, when: "ansible_hostname in ['guattari', 'thinktank', 'ferrerguardia', 'lovelace', 'bakunin', 'parks']" }
+
+#     - { role: resilio, when: "ansible_distribution_version == '16.04'" } 
