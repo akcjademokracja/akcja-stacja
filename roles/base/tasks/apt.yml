@@ -18,6 +18,11 @@
     url: https://eddie.website/repository/keys/eddie_maintainer_gpg.key
     state: present
 
+- name: NewRelic key
+  apt_key:
+    url: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
+    state: present
+
 - name: Add repo
   apt_repository: 
     repo: "{{item}}"
@@ -25,6 +30,7 @@
   with_items:
     - "deb http://eddie.website/repository/apt stable main"
     - ppa:nextcloud-devs/client
+    - "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt xenial main"
 
 - name: Remove arc theme repo
   apt_repository:
@@ -33,7 +39,7 @@
 
 - name: Accept the EULA for MS core fonts
   shell: "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
-  
+
 - name: Install all necessary packages and update the system
   apt: name={{item}} state=installed update_cache=true
   with_items:
@@ -68,6 +74,7 @@
     - moka-icon-theme
     - faba-icon-theme
     - vlc
+    - newrelic-infra 
 
 - name: Install Keepass CX
   tags:

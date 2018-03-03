@@ -4,4 +4,5 @@
 - include: apt.yml
 - include: fonts.yml
 - include: printer.yml
+- include: monitoring.yml
 
