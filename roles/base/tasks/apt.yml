@@ -87,14 +87,6 @@
     dest: "{{home}}/.config/autostart/AirVPN.desktop"
     mode: 0755
 
-- name: Make spool directory need by Brother Driver
-  file:
-    dest: /var/spool/lpd
-    state: directory
-    owner: root
-    group: root
-    mode: 0755
-
 - copy:
     src: "../files/{{item}}"
     dest: "/tmp/{{item}}"
@@ -108,6 +100,4 @@
   with_items: "{{bundled_packages}}"
   ignore_errors: true
 
-- name: Run the hacked Brother installer script
-  shell: bash roles/base/files/linux-brprinter-installer-hackd-2.1.1-2
 
