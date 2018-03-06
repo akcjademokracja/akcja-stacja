@@ -17,4 +17,13 @@
   notify: restart NewRelic
   ignore_errors: true
 
+- name: Set last_update to date of this commit of akcja-stacja
+  replace:
+    path: "/etc/newrelic-infra.yml"
+    regexp: "last_update: .*"
+    replace: "last_update: \"{{lookup('pipe', 'git show -s --format=%ci HEAD')}}\""
+  notify: restart NewRelic
+  ignore_errors: true
+
+
 # echo "license_key: YOUR_LICENSE_KEY" | sudo tee -a /etc/newrelic-infra.yml
