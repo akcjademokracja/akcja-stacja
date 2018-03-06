@@ -1,3 +1,0 @@
----
-- name: restart resilio
-  shell: "sudo machinectl shell --uid=$(id -u {{username}}) .host /bin/systemctl -- --user restart resilio-sync.service"

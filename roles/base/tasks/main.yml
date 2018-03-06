@@ -1,8 +1,8 @@
 ---
-- include: updates.yml
-- include: encryption.yml
-- include: apt.yml
-- include: fonts.yml
-- include: printer.yml
-- include: monitoring.yml
+- include_tasks: updates.yml
+- include_tasks: encryption.yml
+- include_tasks: apt.yml
+- include_tasks: fonts.yml
+- include_tasks: printer.yml
+- include_tasks: monitoring.yml
 
