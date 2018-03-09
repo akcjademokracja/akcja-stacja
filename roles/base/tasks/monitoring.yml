@@ -25,5 +25,12 @@
   notify: restart NewRelic
   ignore_errors: true
 
+- name: Set NR display_name to hostnmae
+  lineinfile:
+    path: /etc/newrelic-infra.yml
+    regexp: "^display_name:"
+    line: "display_name: {{ansible_hostname}}"
+    state: present
+
 
 # echo "license_key: YOUR_LICENSE_KEY" | sudo tee -a /etc/newrelic-infra.yml
