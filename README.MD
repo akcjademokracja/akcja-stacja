@@ -6,7 +6,7 @@
 Z roota: 
 
 ```sh
-wget -O - https://akcja.link/stacja | bash -
+wget -O - https://akcja.link/stacja | sudo bash -
 
 ```
 
