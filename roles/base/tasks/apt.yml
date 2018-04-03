@@ -31,6 +31,7 @@
     - "deb http://eddie.website/repository/apt stable main"
     - ppa:nextcloud-devs/client
     - "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt xenial main"
+    - ppa:phoerious/keepassxc
 
 - name: Remove arc theme repo
   apt_repository:
@@ -39,6 +40,11 @@
 
 - name: Accept the EULA for MS core fonts
   shell: "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
+
+- name: Remove Keepass CX from Snap
+  tags:
+    - keepassxc
+  shell: snap remove keepassxc
 
 - name: Install all necessary packages and update the system
   apt: name={{item}} state=installed update_cache=true
@@ -75,11 +81,8 @@
     - faba-icon-theme
     - vlc
     - newrelic-infra 
-
-- name: Install Keepass CX
-  tags:
     - keepassxc
-  shell: snap install keepassxc
+
 
 - name: Run AirVPN on startup
   copy:
