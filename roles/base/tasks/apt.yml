@@ -32,6 +32,8 @@
     - ppa:nextcloud-devs/client
     - "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt xenial main"
     - ppa:phoerious/keepassxc
+    - ppa:peek-developers/stable
+
 
 - name: Remove arc theme repo
   apt_repository:
@@ -82,6 +84,7 @@
     - vlc
     - newrelic-infra 
     - keepassxc
+    - peek
 
 
 - name: Run AirVPN on startup
