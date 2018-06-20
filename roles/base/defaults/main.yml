@@ -1,11 +1,14 @@
 ---
 bundled_packages:
- - slack-desktop-3.2.1-amd64.deb
- - skypeforlinux_8.22.0.2_amd64.deb
- - zoom_amd64.deb
  - openprinting-ppds-postscript-konica-minolta_20130226-1lsb3.2_all.deb
 # - arc-theme_1488477732.766ae1a-0_all.deb
 # - brscan4-0.4.4-1.amd64.deb
 # - brscan-skey-0.2.4-1.amd64.deb
 # - mfcj5320dwlpr-3.0.1-1a.i386.deb
 # - mfcj5320dwcupswrapper-3.0.1-1a.i386.deb  # maybe not necessary
+
+bundled_urls:
+  - https://go.skype.com/skypeforlinux-64.deb
+  - https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.1-amd64.deb
+  - https://zoom.us/client/latest/zoom_amd64.deb
+
