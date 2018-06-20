@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# set -e
+
+if ! [ `id -u` = '0' ]; then
+    echo "Must run as root" >&2
+    exit 1
+fi
+
+apt install -y \
+     git \
+     libssl-dev \
+     python-virtualenv \
+     python3  \
+     python3-pip
+pip3 install ansible
+[ -d /opt/akcja ] || mkdir -p /opt/akcja
+cd /opt/akcja
+git clone --depth=1 https://github.com/akcjademokracja/akcja-stacja.git akcja-stacja
+cd akcja-stacja
+git pull
+exec bash ./update

@@ -1,0 +1,36 @@
+---
+- name: Install NewRelic license key
+  copy:
+    src: "{{home}}/Akcja Demokracja/Narzędzia/newrelic-infra.yml"
+    dest: "/etc/newrelic-infra.yml"
+    mode: 0600
+    owner: root
+    group: root
+  notify: restart NewRelic
+  ignore_errors: true
+
+- name: Set user tag to current username 
+  replace:
+    path: "/etc/newrelic-infra.yml"
+    regexp: "user: .*"
+    replace: "user: {{username}}"
+  notify: restart NewRelic
+  ignore_errors: true
+
+- name: Set last_update to date of this commit of akcja-stacja
+  replace:
+    path: "/etc/newrelic-infra.yml"
+    regexp: "last_update: .*"
+    replace: "last_update: \"{{lookup('pipe', 'git show -s --format=%ci HEAD')}}\""
+  notify: restart NewRelic
+  ignore_errors: true
+
+- name: Set NR display_name to hostnmae
+  lineinfile:
+    path: /etc/newrelic-infra.yml
+    regexp: "^display_name:"
+    line: "display_name: {{ansible_hostname}}"
+    state: present
+
+
+# echo "license_key: YOUR_LICENSE_KEY" | sudo tee -a /etc/newrelic-infra.yml

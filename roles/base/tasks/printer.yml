@@ -1,0 +1,23 @@
+---
+- name: Check if Kolos is installed
+  tags:
+    - printer
+  stat:
+    path: /etc/cups/ppd/Kolos.ppd
+  register: kolos
+
+- name: Install Kolos printer
+  tags:
+    - printer
+  shell: "(
+  cd /opt/OpenPrinting-KONICA_MINOLTA/ppds/KONICA_MINOLTA;
+  lpadmin -p Kolos -E -v 'dnssd://KONICA%20MINOLTA%20bizhub%20363(7E%3A49%3AAB)._pdl-datastream._tcp.local/' -m 'openprinting-ppds:0/ppd/openprinting/KONICA_MINOLTA/KO500UX.ppd' 
+  )"
+  when: kolos.stat.exists == False
+
+
+- name: Set Kolos papersize to A4
+  tags:
+    - printer
+  shell: "lpadmin -p Kolos -o PageSize=A4"
+  when: kolos.stat.exists == False

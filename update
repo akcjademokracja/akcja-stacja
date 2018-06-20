@@ -1,0 +1,27 @@
+#!/bin/bash
+
+user=`who -q | grep -v "^#" | head -1`
+
+if [ -z "$user" ]; then
+    echo "No user logged in. Aborting" >&2
+    exit 1
+fi
+
+if [ "$1" = "-u" ]; then
+    git fetch -p
+    git checkout --track origin/v2 || git checkout v2
+    git branch -d master
+    nochanges=$(git pull | grep 'Already up-to-date')
+    if [ -n "$nochanges" ]; then
+        echo "No changes. Aborting" >&2
+        exit 1
+    fi
+fi
+
+echo "Logged in user is ${user}"
+
+if [ `whoami` = 'root' ]; then
+	ansible-playbook laptop.yml
+else
+	ansible-playbook -K laptop.yml
+fi

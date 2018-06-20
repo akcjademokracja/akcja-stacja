@@ -1,0 +1,4 @@
+
+username: "{{lookup('pipe','who -q | grep -v \"^#\" | head -1')}}"
+home: "/home/{{username}}"
+

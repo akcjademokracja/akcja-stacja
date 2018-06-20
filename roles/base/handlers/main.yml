@@ -1,0 +1,13 @@
+---
+- name: update font cache
+  shell: fc-cache -f 
+
+- name: restart cups
+  service:
+    name: cups
+    state: restarted
+
+- name: restart NewRelic
+  service:
+    name: newrelic-infra
+    state: restarted

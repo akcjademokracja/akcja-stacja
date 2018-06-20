@@ -1,0 +1,67 @@
+---
+- name: yarn key
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+
+- name: Heroku key
+  apt_key:
+    url: https://cli-assets.heroku.com/apt/release.key 
+    state: present
+
+- name: Docker CE key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Yarn repo
+  apt_repository:
+    repo: "deb https://dl.yarnpkg.com/debian/ stable main"
+
+- name: Heroku repo
+  apt_repository:
+    repo: "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+
+
+- name: Docker CE repo
+  apt_repository:
+    repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable'
+
+- name: Remove Docker.io
+  apt:
+    name: docker.io
+    state: absent
+  
+- name: Install developer packages
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: true
+  with_items:
+    - docker-ce
+    - postgresql
+    - postgresql-contrib
+    - libmysqlclient-dev
+    - yarn
+    - redis-tools
+    - pgadmin3
+    - heroku
+    - emacs
+    - nodejs
+    - coffeescript
+    - vinagre
+    - git-flow
+    - libxml2-dev 
+    - libxslt1-dev
+    - python-dev
+    - curl
+    - libpq-dev
+    - imagemagick
+    - libmagickwand-dev
+    - libqt4-dev
+    - libqtwebkit-dev
+
+
+#-- webkit? qtdeclarative5-dev libqt5webkit5-dev
+#libqt4-dev libqtwebkit-dev
+

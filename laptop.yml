@@ -4,4 +4,7 @@
   become_user: root
   connection: local
   roles:
-    - resilio
+    - base 
+    - { role: developer, when: "ansible_hostname in ['guattari', 'thinktank', 'ferrerguardia', 'lovelace',  'parks']" }
+
+#     - { role: resilio, when: "ansible_distribution_version == '16.04'" } 
