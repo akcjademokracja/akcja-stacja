@@ -8,6 +8,9 @@ if [ -z "$user" ]; then
 fi
 
 if [ "$1" = "-u" ]; then
+    git fetch -p
+    git co --track origin/v2 || git co v2
+    git branch -d master
     nochanges=$(git pull | grep 'Already up-to-date')
     if [ -n "$nochanges" ]; then
         echo "No changes. Aborting" >&2
