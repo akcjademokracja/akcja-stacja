@@ -1,6 +1,6 @@
 ---
 bundled_packages:
- - slack-desktop_3.0.5_amd64.deb
+ - slack-desktop-3.2.1-amd64.deb
  - skypeforlinux_8.22.0.2_amd64.deb
  - zoom_amd64.deb
  - openprinting-ppds-postscript-konica-minolta_20130226-1lsb3.2_all.deb
