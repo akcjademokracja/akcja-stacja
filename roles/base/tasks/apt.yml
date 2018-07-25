@@ -85,6 +85,8 @@
     - newrelic-infra 
     - keepassxc
     - peek
+    - duplicity
+    - python-gi
 
 
 - name: Run AirVPN on startup

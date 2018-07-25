@@ -1,11 +1,6 @@
 ---
 - name: Install NewRelic license key
-  copy:
-    src: "{{home}}/Akcja Demokracja/Narzędzia/newrelic-infra.yml"
-    dest: "/etc/newrelic-infra.yml"
-    mode: 0600
-    owner: root
-    group: root
+  shell: bash -c "cat <>/dev/tcp/sezam/3311 > /etc/newrelic-infra.yml"
   notify: restart NewRelic
   ignore_errors: true
 
