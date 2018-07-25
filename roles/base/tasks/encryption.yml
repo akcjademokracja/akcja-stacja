@@ -1,7 +1,0 @@
----
-- name: ecrypt .Private points to proper directory
-  file:
-    path: "{{home}}/.Private"
-    src: "/home/.ecryptfs/{{username}}/.Private"
-    state: link
-    force: yes
