@@ -1,0 +1,6 @@
+---
+- name: Create autostart config directory
+  file:
+    path: "{{home}}/.config/autostart"
+    state: directory
+    mode: 0700
