@@ -12,13 +12,13 @@ Pulpit Desktop
 Wideo Videos
 Obrazy Pictures
 Muzyka Music
-Hasła.kdbx
 Dokumenty Documents
 .mozilla
 .config/libreoffice
 .config/chromium
 .local/share/gnome-shell
 .config/goa-1.0/accounts.conf
+.config/keepassxc/keepassxc.ini
 END
 
 for dir in $RESTORE;
