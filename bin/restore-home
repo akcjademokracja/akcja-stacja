@@ -14,8 +14,11 @@ Obrazy Pictures
 Muzyka Music
 Dokumenty Documents
 .mozilla
+.thunderbird
+.airvpn
 .config/libreoffice
 .config/chromium
+.config/Slack
 .local/share/gnome-shell
 .config/goa-1.0/accounts.conf
 .config/keepassxc/keepassxc.ini
