@@ -8,12 +8,17 @@ fi
 HOST=$1
 
 RESTORE=<<"END"
-Pulpit 
-Hasła.kdbx 
-Dokumenty 
-.mozilla 
-.config/libreoffice 
+Pulpit Desktop
+Wideo Videos
+Obrazy Pictures
+Muzyka Music
+Hasła.kdbx
+Dokumenty Documents
+.mozilla
+.config/libreoffice
 .config/chromium
+.local/share/gnome-shell
+.config/goa-1.0/accounts.conf
 END
 
 for dir in $RESTORE;
