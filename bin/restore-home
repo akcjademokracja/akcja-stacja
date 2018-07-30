@@ -22,6 +22,7 @@ Dokumenty Documents
 .local/share/gnome-shell
 .config/goa-1.0/accounts.conf
 .config/keepassxc/keepassxc.ini
+.local/share/data/Nextcloud
 END
 
 for dir in $RESTORE;
