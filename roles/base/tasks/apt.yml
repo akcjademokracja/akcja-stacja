@@ -8,10 +8,10 @@
 #     url: http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
 #     state: present
 
-- name: Add Skype key
-  apt_key:
-    url: https://repo.skype.com/data/SKYPE-GPG-KEY
-    state: present
+# - name: Add Skype key
+#   apt_key:
+#     url: https://repo.skype.com/data/SKYPE-GPG-KEY
+#     state: present
 
 - name: AirVPN key
   apt_key:
@@ -49,7 +49,7 @@
   shell: snap remove keepassxc
 
 - name: Install all necessary packages and update the system
-  apt: name={{item}} state=installed update_cache=true
+  apt: name={{item}} state=installed update_cache=true force=yes
   with_items:
     - apt-transport-https
     - systemd-container
@@ -88,6 +88,8 @@
     - peek
     - duplicity
     - python-gi
+    - skypeforlinux
+    - slack-desktop
 
 
 - name: Run AirVPN on startup
@@ -109,7 +111,8 @@
   with_items: "{{bundled_packages}}"
   ignore_errors: true
 
-- get_url:
+- name: Download bundled packages to /tmp/
+  get_url:
     url: "{{item}}"
     dest: "/tmp/{{item | basename}}"
   with_items: "{{bundled_urls}}"
