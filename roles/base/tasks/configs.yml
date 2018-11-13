@@ -4,3 +4,9 @@
     path: "{{home}}/.config/autostart"
     state: directory
     mode: 0700
+- name: Allow non-admin users to configure WiFi
+  copy:
+    src: ../files/org.freedesktop.NetworkManager.pkla
+    dest: /etc/polkit-1/localauthority/50-local.d/
+    mode: 0755
+
