@@ -23,6 +23,11 @@
     url: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
     state: present
 
+- name: Signal desktop key
+  apt_key:
+    url: https://updates.signal.org/desktop/apt/keys.asc
+    state: present
+  
 - name: Add repo
   apt_repository: 
     repo: "{{item}}"
@@ -33,7 +38,7 @@
     - "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt xenial main"
     - ppa:phoerious/keepassxc
     - ppa:peek-developers/stable
-
+    - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
 
 - name: Remove arc theme repo
   apt_repository:
@@ -90,6 +95,7 @@
     - python-gi
     - skypeforlinux
     - slack-desktop
+    - signal-desktop
     - xul-ext-lightning
  
 
