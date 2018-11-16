@@ -90,7 +90,8 @@
     - python-gi
     - skypeforlinux
     - slack-desktop
-
+    - xul-ext-lightning
+ 
 
 - name: Run AirVPN on startup
   copy:
