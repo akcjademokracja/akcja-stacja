@@ -92,11 +92,11 @@
     - keepassxc
     - duplicity
     - python-gi
-    - slack-desktop
     - signal-desktop
     - xul-ext-lightning
     #- peek
     # - skypeforlinux
+    # - slack-desktop
  
 
 - name: Run AirVPN on startup
