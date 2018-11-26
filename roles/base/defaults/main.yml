@@ -7,9 +7,9 @@ bundled_packages:
 # - mfcj5320dwlpr-3.0.1-1a.i386.deb
 # - mfcj5320dwcupswrapper-3.0.1-1a.i386.deb  # maybe not necessary
 
-#  - https://go.skype.com/skypeforlinux-64.deb
-#- https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.1-amd64.deb
 
 bundled_urls:
   - https://zoom.us/client/latest/zoom_amd64.deb
+  - https://go.skype.com/skypeforlinux-64.deb
+  - https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.1-amd64.deb
 
