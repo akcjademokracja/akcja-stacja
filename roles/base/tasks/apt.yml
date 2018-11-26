@@ -98,7 +98,9 @@
     # - skypeforlinux # <- not in cosmic repo again
     # - slack-desktop # <- not in cosmic repo again
  
-
+- name: Install slack from snap
+  shell: snap install --classic slack 
+  
 - name: Run AirVPN on startup
   copy:
     src: ../files/AirVPN.desktop

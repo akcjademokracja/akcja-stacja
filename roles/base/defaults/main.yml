@@ -11,5 +11,5 @@ bundled_packages:
 bundled_urls:
   - https://zoom.us/client/latest/zoom_amd64.deb
   - https://go.skype.com/skypeforlinux-64.deb
-  - https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.1-amd64.deb
+#  - https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.3-amd64.deb
 
