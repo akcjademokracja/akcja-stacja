@@ -1,4 +1,4 @@
 
-username: "{{lookup('pipe','who -q | grep -v \"^#\" | head -1')}}"
+username: "{{lookup('pipe','who -q | cut -f 1 -d \" \" | grep -v \"^#\" | head -1')}}"
 home: "/home/{{username}}"
 
