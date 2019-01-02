@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -u
+set -e 
+
+if [ $(id -u) -ne 0 ]; then
+  echo run as root
+  exit 1
+fi
+
+SIZE=${1:=3}
+FILE=/swap.${SIZE}G
+
+chmod 0600 $FILE
+
+fallocate -l ${SIZE}G $FILE
+echo "$FILE           swap  sw  0  0" >> /etc/fstab
+
