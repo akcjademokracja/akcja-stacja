@@ -1,19 +1,4 @@
 ---
-- name: yarn key
-  apt_key:
-    url: https://dl.yarnpkg.com/debian/pubkey.gpg
-    state: present
-
-- name: Heroku key
-  apt_key:
-    url: https://cli-assets.heroku.com/apt/release.key 
-    state: present
-
-- name: Docker CE key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-
 - name: Yarn repo
   apt_repository:
     repo: "deb https://dl.yarnpkg.com/debian/ stable main"

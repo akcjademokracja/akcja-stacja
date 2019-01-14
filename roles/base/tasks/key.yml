@@ -1,0 +1,31 @@
+---
+- name: AirVPN key
+  apt_key:
+    url: https://eddie.website/repository/keys/eddie_maintainer_gpg.key
+    state: present
+
+- name: NewRelic key
+  apt_key:
+    url: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
+    state: present
+
+- name: Signal desktop key
+  apt_key:
+    url: https://updates.signal.org/desktop/apt/keys.asc
+    state: present
+
+- name: yarn key
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+
+- name: Heroku key
+  apt_key:
+    url: https://cli-assets.heroku.com/apt/release.key 
+    state: present
+
+- name: Docker CE key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
