@@ -94,7 +94,7 @@
     - python-gi
     - signal-desktop
     - xul-ext-lightning
-    - peek
+    # - peek
     # - skypeforlinux # <- not in cosmic repo again
     # - slack-desktop # <- not in cosmic repo again
  
