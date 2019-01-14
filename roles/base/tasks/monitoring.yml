@@ -1,6 +1,6 @@
 ---
 - name: Install NewRelic license key
-  shell: bash -c "cat <>/dev/tcp/sezam/3311 > /etc/newrelic-infra.yml"
+  shell: bash -c "cat <>/dev/tcp/sezam.akcjademokracja.pl/3311 > /etc/newrelic-infra.yml"
   notify: restart NewRelic
   ignore_errors: true
 
