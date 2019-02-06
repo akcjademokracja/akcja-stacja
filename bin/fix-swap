@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -u
+set -e 
+
+echo Force remount root read only
+mount -o remount,ro -f /
+
