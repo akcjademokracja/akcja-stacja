@@ -1,23 +1,40 @@
 ---
-- name: Check if Kolos is installed
+- name: Check if Brother is installed
   tags:
     - printer
   stat:
-    path: /etc/cups/ppd/Kolos.ppd
-  register: kolos
+    path: /etc/cups/ppd/Brother.ppd
+  register: brother
 
-- name: Install Kolos printer
+- name: Install Brother driver from .deb package
+  apt:
+    deb: /tmp/mfcl5700dnlpr-3.2.0-1.i386.deb
+
+- name: Install Brother printer
   tags:
     - printer
   shell: "(
-  cd /opt/OpenPrinting-KONICA_MINOLTA/ppds/KONICA_MINOLTA;
-  lpadmin -p Kolos -E -v 'dnssd://KONICA%20MINOLTA%20bizhub%20363(7E%3A49%3AAB)._pdl-datastream._tcp.local/' -m 'openprinting-ppds:0/ppd/openprinting/KONICA_MINOLTA/KO500UX.ppd' 
-  )"
-  when: kolos.stat.exists == False
+  lpadmin -p Brother -E -v socket://192.168.108.201	
+	)"
+  when: brother.stat.exists == False
 
 
-- name: Set Kolos papersize to A4
+- name: Set Brother papersize to A4
   tags:
     - printer
-  shell: "lpadmin -p Kolos -o PageSize=A4"
-  when: kolos.stat.exists == False
+  shell: "lpadmin -p Brother -o PageSize=A4"
+  when: brother.stat.exists == False
+#cd /opt/brother/Printers/MFCL5700DN/lpd;
+#lpadmin -p Brother -E -v 'dnssd://Brother%20MFC-L5700DN%20series._ipp._tcp.local/?uuid=e3248000-80ce-11db-8000-3c2af4a93bae'
+#lpadmin -p Brother -E -v socket://192.168.108.201 -P /etc/cups/ppd/Brother_MFC-L5700DN_series.ppd    
+
+- name: Install skaner driver from .deb
+  apt:
+    deb: /tmp/brscan4-0.4.8-1.amd64.deb
+
+- name: Install skaner rules from .deb
+  apt:
+    deb: /tmp/brother-udev-rule-type1-1.0.2-0.all.deb
+
+- name: Add skaner
+  shell: brsaneconfig4 -a name=Brother model=5700 ip=192.168.108.201
