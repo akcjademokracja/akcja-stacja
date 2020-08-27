@@ -1,0 +1,91 @@
+---
+
+- name: Install python-psutil package
+  shell: pip3 install psutil
+  
+# user wroman config
+
+- name: Set remote URI for host wroman
+  become_user: wroman 
+  dconf: key="/org/gnome/deja-dup/remote/uri" value="'smb://synology/wroman'"
+  when: "ansible_hostname in ['wroman']"
+
+- name: Set remote FOLDER for host wroman
+  become_user: wroman
+  dconf: key="/org/gnome/deja-dup/remote/folder" value="'/'"
+  when: "ansible_hostname in ['wroman']" 
+
+- name: Set WHAT TO BACKUP for host wroman
+  become_user: wroman
+  dconf: key="/org/gnome/deja-dup/include-list" value="['/home/wroman']"
+  when: "ansible_hostname in ['wroman']"
+
+# user jesus config
+
+- name: Set to make backup
+  dconf: key="/org/gnome/deja-dup/periodic" value="true"
+  become_user: jesus 
+  when: "ansible_hostname in ['jesus']"
+
+- name: Set to make backup weekly
+  dconf: key="/org/gnome/deja-dup/periodic-period" value=7
+  become_user: jesus 
+  when: "ansible_hostname in ['jesus']"
+
+- name: Set lockation type of backups 
+  dconf: key="/org/gnome/deja-dup/backend" value="'remote'"
+  become_user: jesus 
+  when: "ansible_hostname in ['jesus']"
+
+- name: Set remote URI for host jesus
+  become_user: jesus
+  dconf: key="/org/gnome/deja-dup/remote/uri" value="'smb://synology/jesus'"
+  when: "ansible_hostname in ['jesus']"
+
+- name: Set remote FOLDER for host jesus
+  become_user: jesus
+  dconf: key="/org/gnome/deja-dup/remote/folder" value="'/'"
+  when: "ansible_hostname in ['jesus']" 
+
+- name: Set WHAT TO BACKUP for host jesus
+  become_user: jesus
+  dconf: key="/org/gnome/deja-dup/include-list" value="['/home/jesus']"
+  when: "ansible_hostname in ['jesus']"
+
+# user goldman config
+
+- name: Set prompt-check disabled
+  dconf: key="/org/gnome/deja-dup/prompt-check" value="'disabled'"
+  become_user: goldman
+  when: "ansible_hostname in ['goldman']"
+  
+- name: Set to make backup [goldman]
+  dconf: key="/org/gnome/deja-dup/periodic" value="true"
+  become_user: goldman
+  when: "ansible_hostname in ['goldman']"
+
+- name: Set to make backup weekly [goldman]
+  dconf: key="/org/gnome/deja-dup/periodic-period" value=7
+  become_user: goldman
+  when: "ansible_hostname in ['goldman']"
+
+- name: Set lockation type of backups [goldman] 
+  dconf: key="/org/gnome/deja-dup/backend" value="'remote'"
+  become_user: goldman
+  when: "ansible_hostname in ['goldman']"
+
+- name: Set remote URI for host [goldman]
+  become_user: goldman
+  dconf: key="/org/gnome/deja-dup/remote/uri" value="'smb://synology/goldman'"
+  when: "ansible_hostname in ['goldman']"
+
+- name: Set remote FOLDER for host [goldman]
+  become_user: goldman
+  dconf: key="/org/gnome/deja-dup/remote/folder" value="'/'"
+  when: "ansible_hostname in ['goldman']" 
+
+- name: Set WHAT TO BACKUP for host [goldman]
+  become_user: goldman
+  dconf: key="/org/gnome/deja-dup/include-list" value="['/home/goldman']"
+  when: "ansible_hostname in ['goldman']"
+

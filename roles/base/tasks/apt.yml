@@ -12,6 +12,7 @@
 #   apt_key:
 #     url: https://repo.skype.com/data/SKYPE-GPG-KEY
 #     state: present
+
 - name: Add repo
   apt_repository: 
     repo: "{{item}}"
@@ -19,7 +20,9 @@
   with_items:
     - "deb http://eddie.website/repository/apt stable main"
     - ppa:nextcloud-devs/client
-    - "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt xenial main"
+    - ppa:libreoffice/ppa
+    - ppa:philip.scott/elementary-tweaks
+    #- "deb [arch=amd64] https://download.newrelic.com/infrastructure_agent/linux/apt xenial main"
     - ppa:phoerious/keepassxc
     - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
     # - ppa:peek-developers/stable
@@ -32,16 +35,18 @@
 - name: Accept the EULA for MS core fonts
   shell: "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
 
-- name: Remove Keepass CX from Snap
-  tags:
-    - keepassxc
-  shell: snap remove keepassxc
 
 - name: Install all necessary packages and update the system
-  apt: name={{item}} state=present update_cache=true force=yes
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: true
+    force: yes
+  #apt:  name={{item}} state=present update_cache=true force=yes
   with_items:
     - apt-transport-https
     - systemd-container
+    - snapd
     - gnome-shell
     - chrome-gnome-shell
     - nemo
@@ -68,19 +73,27 @@
     - gscan2pdf
     - network-manager-openvpn-gnome
     - airvpn
-    - nextcloud-client
-    - moka-icon-theme
-    - faba-icon-theme
-    - vlc
-    - newrelic-infra 
+    #- nextcloud-client
+    #- moka-icon-theme
+    #- faba-icon-theme
+    #- vlc
+    #- newrelic-infra 
     - keepassxc
+    - deja-dup
     - duplicity
     - python-gi
     - signal-desktop
     - xul-ext-lightning
-    # - peek
-    # - skypeforlinux # <- not in cosmic repo again
+    - plymouth-themes
+    - libreoffice
+    - openssh-server
+    - firefox
+    - software-properties-common
+    - elementary-tweaks
+    #- peek
+    #- skypeforlinux # <- not in cosmic repo again
     # - slack-desktop # <- not in cosmic repo again
+  
 
 - name: Install all packages on cosmic
   apt: name={{item}} state=present update_cache=true force=yes
@@ -88,10 +101,14 @@
     - peek
   when: ansible_distribution_release == 'cosmic'
 
-
+- name: Install snap
+  shell: apt install snapd 
  
 - name: Install slack from snap
-  shell: snap install --classic slack 
+  shell: snap install slack --classic 
+
+- name: Install ark from snap
+  shell: snap install ark
   
 - name: Run AirVPN on startup
   copy:
@@ -124,3 +141,26 @@
     state: present
   with_items: "{{bundled_urls}}"
   ignore_errors: true
+
+- name: Copy theme folder
+  copy:
+    src: /opt/akcja/akcja-stacja/themes/akcja
+    dest: /usr/share/plymouth/themes/  
+    follow: yes
+
+- name: Set Plymouth configuration to use theme
+  shell: sudo ln -sf /lib/plymouth/themes/akcja/akcja.plymouth /etc/alternatives/default.plymouth && sudo ln -sf /lib/plymouth/themes/akcja/akcja.grub /etc/alternatives/default.plymouth.grub 
+
+- name: Apply Plymouth configuration 18.04+
+  shell: sudo update-initramfs -u
+
+- name: Use double-click in file manager
+  shell: gsettings set io.elementary.files.preferences single-click false
+  
+- name: Disable screen rotation
+  shell: gsettings set org.gnome.settings-daemon.peripherals.touchscreen orientation-lock true
+# - name: Overwriting logo_blurred.png
+#   copy:
+#     src: /tmp/logo_blurred.png
+#     dest: /usr/share/plymouth/themes/elementary  
+#     follow: yes
