@@ -106,6 +106,9 @@
  
 - name: Install slack from snap
   shell: snap install slack --classic 
+
+- name: Install ark from snap
+  shell: snap install ark
   
 - name: Run AirVPN on startup
   copy:
